@@ -8,13 +8,15 @@ const k = kaplay({
     height: 764,
     letterbox:true,
     touchToMouse:true,
-    global:true,
+    global:false,
     scale:4,
     pixelDensity: devicePixelRatio,
     debug: true,
     canvas:document.getElementById('canvas'),
 })
 
-
-
 export default k;
+
+
+
+

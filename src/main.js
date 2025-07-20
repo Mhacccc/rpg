@@ -1,87 +1,70 @@
-import "./kaplayCtx";
+import k from "./kaplayCtx";
 import "./assets.js"
 
 
 
-const SPEED = 100;
+const SPEED = 200;
 
-const player = add([
-    sprite("player-idle"),
-    pos(40, 30),
-    scale(2),
-    anchor("center"),
-    area({ shape: new Rect(vec2(0,0),15,22)}),
-    body(),
+const player = k.add([
+    k.sprite("player-idle"),
+    k.pos(40, 30),
+    k.scale(2),
+    k.anchor("center"),
+    k.area({ shape: new k.Rect(k.vec2(0,0),15,22)}),
+    k.body(),
 ]);
 
-add([
-    rect(100,100),
-    pos(400,500),
-    outline(),
-    area(),
-    body({isStatic:true}),
+k.add([
+    k.rect(100,100),
+    k.pos(400,500),
+    k.outline(),
+    k.area(),
+    k.body({isStatic:true}),
 ])
 
 
-onUpdate(()=>{
-    setCamPos(player.worldPos());
+k.onUpdate(()=>{
+    k.setCamPos(player.worldPos());
 })
 
 
-onKeyDown("down", () => {
-    player.move(0, SPEED)
-    if (player.sprite !== "player-walk") {
-        switchAnimation("player-walk", "walk-down")
-    }
-})
+    k.onKeyDown("down", () => {
+        player.move(0, SPEED)
+        if (player.sprite !== "player-walk") {
+            switchAnimation("player-walk", "walk-down")
+        }
+    })
 
-onKeyDown("up", () => {
-    player.move(0, -SPEED) //move(x,y) x=horizontal direction, y=vertical direction
-    if (player.sprite !== "player-walk") {
-        switchAnimation("player-walk", "walk-up")
-    }
-})
-onKeyDown("left", () => {
-    player.move(-SPEED, 0)
-    if (player.sprite !== "player-walk") {
-        switchAnimation("player-walk", "walk-side")
-    }
-})
+    k.onKeyDown("up", () => {
+        player.move(0, -SPEED) 
+        if (player.sprite !== "player-walk") {
+            switchAnimation("player-walk", "walk-up")
+        }
+    })
+    k.onKeyDown("left", () => {
+        player.move(-SPEED, 0)
+        if (player.sprite !== "player-walk") {
+            switchAnimation("player-walk", "walk-side")
+        }
+    })
 
-onKeyDown("right", () => {
-    player.flipX = true;
-    player.move(SPEED, 0)
-    if (player.sprite !== "player-walk") {
-        switchAnimation("player-walk", "walk-side")
-    }
-})
+    k.onKeyDown("right", () => {
+        player.flipX = true;
+        player.move(SPEED, 0)
+        if (player.sprite !== "player-walk") {
+            switchAnimation("player-walk", "walk-side")
+        }
+    })
 
 function switchAnimation(spriteName, animName) {
-    player.use(sprite(spriteName));   // changes the sprite texture and anims
+    player.use(k.sprite(spriteName));   // changes the sprite texture and anims
     player.play(animName);           // plays the anim from the new sprite
 }
 
-
-onKeyRelease("down", () => {
-    if (player.sprite !== "player-idle") {
-        switchAnimation("player-idle", "idle")
-    }
+["up","down","left","right"].forEach(key=>{
+    k.onKeyRelease(key,()=>{
+        if(player.sprite !=="player-idle"){
+            switchAnimation("player-idle", "idle")
+        }
+    })
 })
-onKeyRelease("up", () => {
-    if (player.sprite !== "player-idle") {
-        switchAnimation("player-idle", "idle")
-    }
-})
-onKeyRelease("left", () => {
-    if (player.sprite !== "player-idle") {
-        switchAnimation("player-idle", "idle")
-    }
-})
-onKeyRelease("right", () => {
-    if (player.sprite !== "player-idle") {
-        switchAnimation("player-idle", "idle")
-    }
-})
-
-
-

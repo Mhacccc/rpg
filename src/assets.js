@@ -1,4 +1,6 @@
-loadSprite("player-walk", "./assets/Unarmed_Walk_full.png", {
+import k from "./kaplayCtx"
+
+k.loadSprite("player-walk", "./assets/Unarmed_Walk_full.png", {
     sliceX: 6,
     sliceY: 4,
     anims: {
@@ -26,14 +28,14 @@ loadSprite("player-walk", "./assets/Unarmed_Walk_full.png", {
 });
 
 
-loadSprite("player-idle", "./assets/Unarmed_Idle_full.png", {
+k.loadSprite("player-idle", "./assets/Unarmed_Idle_full.png", {
     sliceX: 12,
     sliceY: 4,
     anims: {
         "idle": {
             from: 0,
             to: 39,
-            speed: 5,
+            speed: 6,
             pingpong:true,
             loop: true
         },
