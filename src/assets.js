@@ -28,6 +28,8 @@ k.loadSprite("player-walk", "./assets/Unarmed_Walk_full.png", {
 });
 
 
+
+
 k.loadSprite("player-idle", "./assets/Unarmed_Idle_full.png", {
     sliceX: 12,
     sliceY: 4,
@@ -41,3 +43,33 @@ k.loadSprite("player-idle", "./assets/Unarmed_Idle_full.png", {
         },
     }
 });
+
+k.loadSprite("attack","assets/Sword_attack_full.png",{
+    sliceX:8,
+    sliceY:4,
+    anims:{
+        "attack-down":{
+            from:0,
+            to:7,
+            speed:50,
+          
+        },
+        "attack-left":{
+            from:8,
+            to:15,
+            speed:50, 
+        },
+
+        "attack-up":{
+            from:24,
+            to:31,
+            speed:50, 
+        },
+
+    }
+})
+
+
+
+k.loadSprite("map","./assets/map.png");
+k.loadSprite("door","./assets/Door.png")
